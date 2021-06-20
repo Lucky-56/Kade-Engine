@@ -137,15 +137,17 @@ class Ratings
         return rating;
     }
 
-    public static function CalculateRanking(score:Int,scoreDef:Int,nps:Int,maxNPS:Int,accuracy:Float):String
-    {
-        return
-         (FlxG.save.data.npsDisplay ?																							// NPS Toggle
-         "NPS: " + nps + " (Max " + maxNPS + ")" + (!PlayStateChangeables.botPlay || PlayState.loadRep ? " | " : "") : "") +								// 	NPS
-         (!PlayStateChangeables.botPlay || PlayState.loadRep ? "Score:" + (Conductor.safeFrames != 10 ? score + " (" + scoreDef + ")" : "" + score) + 		// Score
-         (FlxG.save.data.accuracyDisplay ?																						// Accuracy Toggle
-         " | Combo Breaks:" + PlayState.misses + 																				// 	Misses/Combo Breaks
-         " | Accuracy:" + (PlayStateChangeables.botPlay && !PlayState.loadRep ? "N/A" : HelperFunctions.truncateFloat(accuracy, 2) + " %") +  				// 	Accuracy
-         " | " + GenerateLetterRank(accuracy) : "") : ""); 																		// 	Letter Rank
-    }
+    public static function CalculateRanking(score:Int,scoreDef:Int,nps:Int,maxNPS:Int,health:Int,accuracy:Float):String
+        {
+            return 
+            (FlxG.save.data.npsDisplay ?																							// NPS Toggle
+            "NPS: " + nps + " (Max " + maxNPS + ")" + (!FlxG.save.data.botplay ? " | " : "") : "") +								// 	NPS
+            (!FlxG.save.data.botplay ? "Score:" + (Conductor.safeFrames != 10 ? score + " (" + scoreDef + ")" : "" + score) + 		// Score
+            (FlxG.save.data.healthDisplay ?																							// Health Toggle
+            " | Health:" + health + "%" : "") +																						// 	Health
+            (FlxG.save.data.accuracyDisplay ?																						// Accuracy Toggle
+            " | Combo Breaks:" + PlayState.misses + 																				// 	Misses/Combo Breaks
+            " | Accuracy:" + (FlxG.save.data.botplay ? "N/A" : HelperFunctions.truncateFloat(accuracy, 2) + " %") +  				// 	Accuracy
+            " | " + GenerateLetterRank(accuracy) : "") : ""); 																		// 	Letter Rank
+        }
 }
