@@ -57,8 +57,14 @@ class OptionsMenu extends MusicBeatState
 			#end
 			new FlashingLightsOption("Toggle flashing lights that can cause epileptic seizures and strain."),
 			new WatermarkOption("Enable and disable all watermarks from the engine."),
-			new BotPlay("Showcase your charts and mods with autoplay."),
+			new BotPlay("Showcase your charts and mods with autoplay.")
 			new ScoreScreen("Show the score screen after the end of a song")
+		]),
+		
+		new OptionCategory("Manage Save Data", [
+			new ResetScoreOption("Reset your score on all songs and weeks."),
+			new LockWeeksOption("Reset your storymode progress. (only Tutorial + Week 1 will be unlocked)"),
+			new ResetSettings("Reset ALL your settings.")
 		])
 		
 	];
